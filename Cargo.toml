@@ -3,6 +3,10 @@ name = "sqlite_varint"
 version = "0.1.0"
 authors = ["Midas Lambrichts <midaslamb@gmail.com>"]
 edition = "2018"
+keywords = ["sqlite", "varint"]
+description = "Utility functions for dealing with Varints from SQLite."
+repository = "https://github.com/MidasLamb/sqlite-varint"
+license = "MIT"
 
 [dependencies]
 
