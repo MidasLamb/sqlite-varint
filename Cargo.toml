@@ -1,5 +1,5 @@
 [package]
-name = "sqlite_varint"
+name = "sqlite-varint"
 version = "0.1.1"
 authors = ["Midas Lambrichts <midaslamb@gmail.com>"]
 edition = "2018"
@@ -7,6 +7,10 @@ keywords = ["sqlite", "varint"]
 description = "Utility functions for dealing with varints from SQLite."
 repository = "https://github.com/MidasLamb/sqlite-varint"
 license = "MIT"
+
+[lib]
+name = "sqlite_varint"
+bench = false
 
 [dependencies]
 
