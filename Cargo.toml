@@ -9,7 +9,7 @@ repository = "https://github.com/MidasLamb/sqlite-varint"
 license = "MIT"
 
 [lib]
-name = sqlite_varint
+name = "sqlite_varint"
 bench = false
 
 [dependencies]
