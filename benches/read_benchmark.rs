@@ -2,7 +2,7 @@ use criterion::BenchmarkId;
 use criterion::Criterion;
 use criterion::Throughput;
 use criterion::{black_box, criterion_group, criterion_main};
-use sqlite_varint::read_varint;
+use sqlite_varint::{read_varint, read_varint_byte_length};
 
 pub fn criterion_benchmark(c: &mut Criterion) {
     let bytes_vec: Vec<Vec<u8>> = vec![
@@ -21,18 +21,34 @@ pub fn criterion_benchmark(c: &mut Criterion) {
             0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x0f, 0x0f, 0x0f,
         ],
     ];
-    let mut group = c.benchmark_group("read_varint");
-    for input in bytes_vec {
-        group.throughput(Throughput::Bytes(input.len() as u64));
-        group.bench_with_input(
-            BenchmarkId::from_parameter(format!("Input length: {:?}", input.len())),
-            &input,
-            |b, input| {
-                b.iter(|| read_varint(input));
-            },
-        );
+    {
+        let mut group = c.benchmark_group("read_varint");
+        for input in bytes_vec.iter() {
+            group.throughput(Throughput::Bytes(input.len() as u64));
+            group.bench_with_input(
+                BenchmarkId::from_parameter(format!("Input length: {:?}", input.len())),
+                &input,
+                |b, input| {
+                    b.iter(|| read_varint(input));
+                },
+            );
+        }
+        group.finish();
     }
-    group.finish();
+    {
+        let mut group = c.benchmark_group("read_varint_length");
+        for input in bytes_vec.iter() {
+            group.throughput(Throughput::Bytes(input.len() as u64));
+            group.bench_with_input(
+                BenchmarkId::from_parameter(format!("Input length: {:?}", input.len())),
+                &input,
+                |b, input| {
+                    b.iter(|| read_varint_byte_length(input));
+                },
+            );
+        }
+        group.finish();
+    }
 }
 
 criterion_group!(benches, criterion_benchmark);

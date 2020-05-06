@@ -87,7 +87,7 @@ pub fn serialize_to_varint(input: i64) -> Vec<u8> {
         }
     }
 
-    result.into_iter().collect()
+    result.into()
 }
 
 #[cfg(test)]
