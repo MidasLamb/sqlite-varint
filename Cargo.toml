@@ -20,3 +20,7 @@ criterion = "0.3"
 [[bench]]
 name = "read_benchmark"
 harness = false
+
+[[bench]]
+name = "write_benchmark"
+harness = false
