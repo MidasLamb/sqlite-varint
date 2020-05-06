@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
-//! Sqlite Varint
-//!
+//! # SQLite Varint
+//! Utility functions for dealing with SQLite varints.
 
 /// Reads a slice of bytes from the start assuming it is a varint.
 /// Gives back the varint as i64 and the amount of bytes the varint was big.
